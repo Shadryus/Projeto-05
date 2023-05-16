@@ -1,3 +1,4 @@
+/* zerar espaços e deixar tudo encaixado */
 *{
   margin: 0;
   padding: 0;
@@ -5,26 +6,31 @@
 }
 
 :root{
-  --ff-heading: 'Epilogue', sans-serif;
+  /* variáveis */
+  --ff-heading: 'Epilogue', sans-serif; /* font-family(ff) */
   --ff-texting: 'Open sans', sans-serif;
+  --hue: 250; /* primeira propriedade do hsl */
+  --bg-primary: hsl(var(--hue) 22% 20%); /* background(bg) */
+  --fc-primary: hsl(var(--hue) 0% 100%); /* font-color(fc) */
+  --fc-secondary: hsl(var(--hue) 50% 80%);
+  --fc-secondary-dark: hsl(var(--hue) 100% 11%);
 
-  --hue: 250;
-  --bg-primary: hsl(var(--hue), 22%, 20%);
-  --fc-primary: hsl(var(--hue), 0%, 100%);
-  --fc-secondary: hsl(var(--hue), 50%, 80%);
+  font-size: 62.5%; /* deixar a medida rem em 10px */
 
-  font-size: 62.5%;
-  --fs-body: 1.6rem;
+  --fs-body: 1.6rem; /* font-size(fs) */ 
   --fs-heading: 4rem;
 }
 
 body{
   font-family: var(--ff-texting);
-
   background-color: var(--bg-primary);
   color: var(--fc-primary);
-
   font-size: var(--fs-body);
+}
+
+.page{ /* encapsula os elementos header, main e footer */ 
+  max-width: 33rem; /* limita a 330px a largura do conteúdo */
+  margin: 0 auto; /* centraliza o conteúdo */
 }
 
 header{
@@ -37,10 +43,8 @@ header p{
   margin-top: 10rem;
   color: var(--fc-secondary);
   text-transform: uppercase;
-
   line-height: 3.2rem;
   letter-spacing: 3px;
-
   font-weight: 400;
   margin-bottom: 1.7rem;
 }
@@ -49,4 +53,54 @@ header h1{
   font-weight: 800;
   font-size: var(--fs-heading);
   line-height: 4.8rem;
+}
+
+main{
+  display: grid; /* nao alterou visualmente nada sozinho, liberou gap */
+  gap: 3.2rem;
+}
+
+.card{
+  position: relative; /* prende o position absolute dos elementos deixando o h2 e span só dentro da area da imagem */
+  font-family: var(--ff-heading);
+}
+
+.card img{
+  width: 100%; /* largura se altera com tamanho da pagina */
+  height: 41.6rem;
+  object-fit: cover; /* a img mantém a largura e só aparece o trecho do tamanho do card */
+  border-radius: 0.6rem;
+  transition: all 200ms; /* suaviza a animação da scale */
+}
+
+.card img:hover{
+  transform: scale(1.1); /* aumenta o tamanho */
+  opacity: 0.4; /* deixa transparente onde 1 visível/ 0 invisível */
+}
+
+.card h2{
+  /* deixa os elementos em cima da imagem */
+  position: absolute;
+  bottom: 5.1rem;
+  left: 2.8rem;
+  font-size: var(--fs-heading);
+  font-weight: 800;
+
+  /* alinha o h2/span e da um espaço entre eles */
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+}
+
+.card h2 span{
+  border-radius: 1.9rem;
+  background-color: var(--fc-primary);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  color: var(--fc-secondary-dark);
+  padding: 0 1.6rem;
+  height: 3.8rem; 
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
 }
