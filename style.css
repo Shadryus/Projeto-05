@@ -37,6 +37,7 @@ header{
   margin: 10rem 0 8rem;
   font-family: var(--ff-heading);
   text-align: center;
+  animation: topdown 700ms;
 }
 
 header p{
@@ -58,6 +59,7 @@ header h1{
 main{
   display: grid; /* nao alterou visualmente nada sozinho, liberou gap */
   gap: 3.2rem;
+  animation: downtop 700ms 350ms backwards; /* por conta do delay (350ms) precisa do forwards/backwards senão pisca */
 }
 
 .card{
@@ -105,6 +107,54 @@ main{
   width: fit-content;
 }
 
-@keyframes{
 
+/* main{ avançado e menor o código
+  animation: downtop 700ms 350ms reverse backwards;
+} */
+
+
+/* header{
+  animation-name: topdown; nome da animação definida no @keyframes
+  animation-duration: 700ms; duração da animação
+  animation-fill-mode: forwards; faz a animação nao voltar ao ponto inicial
+  animation-direction: reverse; inverte a ordem da animação
+  animation-delay: 200ms;  inicia no estado original e dispara depois desse tempo
+  animation-timing-function: ease;
+  animation-iteration-count: infinite; repete a animação
+  animation-play-state: paused; inicia pausado a animação
+} 
+header:hover{
+  animation-play-state: running; inicia a animação ao passar o mouse
+} */
+
+@keyframes topdown{
+  /* quando termina a animação ele volta ao ponto inicial */
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* @keyframes downtop{ avançado e menor o código
+  100%{
+    opacity: 0;
+    transform: translateY(15px);
+  }
+} */
+
+@keyframes downtop{
+  0%{
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
