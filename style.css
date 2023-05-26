@@ -1,5 +1,5 @@
 /* zerar espaços e deixar tudo encaixado */
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,10 +10,10 @@
   --ff-heading: 'Epilogue', sans-serif; /* font-family(ff) */
   --ff-texting: 'Open sans', sans-serif;
   --hue: 250; /* primeira propriedade do hsl */
-  --bg-primary: hsl(var(--hue) 22% 20%); /* background(bg) */
-  --fc-primary: hsl(var(--hue) 0% 100%); /* font-color(fc) */
-  --fc-secondary: hsl(var(--hue) 50% 80%);
-  --fc-secondary-dark: hsl(var(--hue) 100% 11%);
+  --bg-primary: hsl(var(--hue), 22%, 20%); /* background(bg) */
+  --fc-primary: hsl(var(--hue), 0%, 100%); /* font-color(fc) */
+  --fc-secondary: hsl(var(--hue), 50%, 80%);
+  --fc-secondary-dark: hsl(var(--hue), 100%, 11%, 1);
 
   font-size: 62.5%; /* deixar a medida rem em 10px */
 
@@ -21,27 +21,32 @@
   --fs-heading: 4rem;
 }
 
-body{
+body {
   font-family: var(--ff-texting);
   background-color: var(--bg-primary);
   color: var(--fc-primary);
   font-size: var(--fs-body);
 }
 
-.page{ /* encapsula os elementos header, main e footer */ 
+.page { /* encapsula os elementos header, main e footer */ 
   max-width: 33rem; /* limita a 330px a largura do conteúdo */
   margin: 0 auto; /* centraliza o conteúdo */
 }
 
-header{
+img {
+  width: 100%;
+  height: auto;
+}
+
+header {
   margin: 10rem 0 8rem;
   font-family: var(--ff-heading);
   text-align: center;
   animation: topdown 700ms;
 }
 
-header p{
-  margin-top: 10rem;
+header p {
+  /* margin-top: 10rem; */
   color: var(--fc-secondary);
   text-transform: uppercase;
   line-height: 3.2rem;
@@ -50,7 +55,7 @@ header p{
   margin-bottom: 1.7rem;
 }
 
-header h1{
+header h1 {
   font-weight: 800;
   font-size: var(--fs-heading);
   line-height: 4.8rem;
@@ -59,6 +64,7 @@ header h1{
 main{
   display: grid; /* nao alterou visualmente nada sozinho, liberou gap */
   gap: 3.2rem;
+  padding-bottom: 10rem; /* mayk */
   animation: downtop 700ms 350ms backwards; /* por conta do delay (350ms) precisa do forwards/backwards senão pisca */
 }
 
@@ -68,22 +74,25 @@ main{
 }
 
 .card img{
-  width: 100%; /* largura se altera com tamanho da pagina */
+  /* width: 100%; */ /* largura se altera com tamanho da pagina */
   height: 41.6rem;
   object-fit: cover; /* a img mantém a largura e só aparece o trecho do tamanho do card */
-  border-radius: 0.6rem;
+  /* border-radius: 0.6rem; */
+  border-radius: 6px; /* mayk */
   transition: all 200ms; /* suaviza a animação da scale */
 }
 
-.card img:hover{
-  transform: scale(1.1); /* aumenta o tamanho */
-  opacity: 0.4; /* deixa transparente onde 1 visível/ 0 invisível */
+.card img:hover {
+  /* aumenta o tamanho */
+  transform: scale(1.1);
+  /* deixa transparente onde 1 visível/ 0 invisível */
+  opacity: 0.4; 
 }
 
-.card h2{
+.card h2 {
   /* deixa os elementos em cima da imagem */
   position: absolute;
-  bottom: 5.1rem;
+  bottom: 5.2rem;
   left: 2.8rem;
   font-size: 4rem;
   font-weight: 800;
@@ -94,17 +103,17 @@ main{
   gap: 2.8rem;
 }
 
-.card h2 span{
-  border-radius: 1.9rem;
+.card h2 span {
+  border-radius: 2rem;
   background-color: var(--fc-primary);
   font-size: var(--fs-body);
   font-weight: 400;
   color: var(--fc-secondary-dark);
   padding: 0 1.6rem;
+  width: fit-content;
   height: 3.8rem; 
   display: inline-flex;
   align-items: center;
-  width: fit-content;
 }
 
 
@@ -127,7 +136,7 @@ header:hover{
   animation-play-state: running; inicia a animação ao passar o mouse
 } */
 
-@keyframes topdown{
+@keyframes topdown {
   /* quando termina a animação ele volta ao ponto inicial */
   0% {
     opacity: 0;
@@ -147,47 +156,46 @@ header:hover{
   }
 } */
 
-@keyframes downtop{
-  0%{
+@keyframes downtop {
+  0% {
     opacity: 0;
     transform: translateY(15px);
   }
   
-  100%{
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@media (min-width: 700px){
-  :root{
-    --fs-heading:5.6rem;
+@media (min-width: 700px) {
+  :root {
+    --fs-heading: 5.6rem;
   }
 
-  .page{
-    max-width: 2000px;
+  .page {
+    max-width: 117rem;
     padding: 0 5rem;
   }
 
-  main{
-    grid-template-areas: 
-    "A B B"
+  main {
+    grid-template-areas: "A B B"
     "C C D";
   }
 
-  main div:nth-child(1){
+  main div:first-child(1) {
     grid-area: A;
   }
 
-  main div:nth-child(2){
+  main div:nth-child(2) {
     grid-area: B;
   }
 
-  main div:nth-child(3){
+  main div:nth-child(3) {
     grid-area: C;
   }
 
-  main div:nth-child(4){
+  main div:nth-child(4) {
     grid-area: D;
   }
 }
