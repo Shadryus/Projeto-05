@@ -69,6 +69,7 @@ main{
 }
 
 .card{
+  border: 1px solid red;
   position: relative; /* prende o position absolute dos elementos deixando o h2 e span só dentro da area da imagem */
   font-family: var(--ff-heading);
 }
@@ -168,7 +169,7 @@ header:hover{
   }
 }
 
-@media (min-width: 700px) {
+@media (width >= 700px) {
   :root {
     --fs-heading: 5.6rem;
   }
@@ -179,23 +180,23 @@ header:hover{
   }
 
   main {
-    grid-template-areas: "A B B"
-    "C C D";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
   }
 
-  main div:first-child(1) {
-    grid-area: A;
+  main div:nth-child(1) {
+    grid-column: 1;
   }
 
   main div:nth-child(2) {
-    grid-area: B;
+    grid-column: 2 / span 2;
   }
 
   main div:nth-child(3) {
-    grid-area: C;
+    grid-column: 1 / span 2;
   }
 
   main div:nth-child(4) {
-    grid-area: D;
+    grid-column: 3;
   }
 }
